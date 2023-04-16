@@ -14,6 +14,7 @@ public class EmailController {
 	@Autowired
 	private EmailService service;
 	
+	/*
 	@PostMapping("/sendMail")
 	public String sendMail(@RequestBody EmailDetails details) {
 		String status = service.sendSimpleMail(details);
@@ -22,13 +23,27 @@ public class EmailController {
 	}
 	
 	@PostMapping("/sendMailWithAttachment")
-    public String sendMailWithAttachment(
-        @RequestBody EmailDetails details)
-    {
+    public String sendMailWithAttachment(@RequestBody EmailDetails details){
         String status
             = service.sendMailWithAttachment(details);
  
         return status;
     }
+    */
+	
+	@PostMapping("/mailTest")
+	public void sendMailForTesting() {
+		service.sendSimpleMailForTesting();
+	}
+	
+	@PostMapping("/sendMail")
+	public void sendSimpleMail(@RequestBody String sender, @RequestBody String senderPassword, @RequestBody String recipient) {
+		service.sendSimpleMail(sender, senderPassword, recipient);
+	}
+	
+	@PostMapping("/sendDummyMail")
+	public void sendDummyMail() {
+		service.dummyMail();
+	}
 
 }
